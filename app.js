@@ -16,7 +16,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.2.0/firebas
 
 // Add Firebase products that you want to use
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js'
-import { getFirestore, collection, addDoc, query, where, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js'
+import { getFirestore, collection, addDoc, query, where, onSnapshot, orderBy } from 'https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js'
 
 
 
@@ -48,6 +48,9 @@ const visualizarElemento = (elemento) => {
   elemento.classList.remove('d-none');
 }
 
+let unsubscribe;
+chat.innerHTML = "";
+
 
 
 onAuthStateChanged(auth, (user) => {
@@ -62,16 +65,29 @@ onAuthStateChanged(auth, (user) => {
     eliminarElemento(msgInicio);
 
 
-    const q = query(collection(db, "chats"));
+    const q = query(collection(db, "chats"), orderBy("fecha"));
+
+    chat.innerHTML = "";
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
           console.log("New msg: ", change.doc.data());
-          //manipulando el template
+
+          //manipulando el template-------------------------------------------------------------
           const clone = msgTemplate.content.cloneNode(true);
           console.log(clone.querySelector("span"))
           clone.querySelector("span").textContent = change.doc.data().msg;
+          if (user.uid === change.doc.data().uid) {
+            clone.querySelector("div").classList.add('text-end');
+            clone.querySelector("span").classList.add('bg-success');
+          } else {
+            clone.querySelector("div").classList.add('text-start');
+            clone.querySelector("span").classList.add('bg-secondary');
+          }
+
+
+
           chat.append(clone);
         }
 
@@ -87,6 +103,10 @@ onAuthStateChanged(auth, (user) => {
     eliminarElemento(chat);
     eliminarElemento(formulario);
     visualizarElemento(msgInicio);
+
+    if (unsubscribe) {
+      unsubscribe();
+    }
   }
 });
 

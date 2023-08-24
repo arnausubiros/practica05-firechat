@@ -15,6 +15,13 @@
     <title>Chat -Firebase</title>
 
     <!-- Bootstrap CSS -->
+
+    <style>
+      .chat-container {
+        height: calc(100vh - 170px);
+        overflow: scroll;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-dark bg-dark">
@@ -32,11 +39,11 @@
       Para ver los chats debes inicializar sesión
     </p>
 
-    <main class="container mt-2" id="chat">
+    <main class="container mt-2 chat-container" id="chat">
       <!-- template -->
       <template id="msgTemplate">
         <div class="text-start">
-          <span class="badge bg-secondary">Texto</span>
+          <span class="badge">Texto</span>
         </div>
 
         <!--  <div class="text-end">
