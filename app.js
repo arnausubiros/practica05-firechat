@@ -161,9 +161,9 @@ formulario.addEventListener('submit', async (e) => {
       fecha: new Date(),
     });
     formulario.msg.value = " ";
-    console.log("Document written with ID: ", docRef.id);
+    //  console.log("Document written with ID: ", docRef.id);
   } catch (error) {
-    console.log(error);
+    //  console.log(error);
   } finally {
     btnEnviar.disable = false;
   }
