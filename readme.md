@@ -21,7 +21,6 @@ añadimos: @import "../node_modules/bootstrap/scss/bootstrap";
 - una vez guardado el archivo compilamos Watch Saas , es la extension Liv
 
 - FIREBASE - accedemos a https://firebase.google.com/?hl=es . Creamos un proyecto . Agrega Firebase a tu aplicaicon web
-( usando npm o script). Usaremos la etiqueta script en app.js y en la etiqueta script del index.html añadiremos de tipo module -
- <script src="app.js" type="module"></script>
+  ( usando npm o script). Usaremos la etiqueta script en app.js y en la etiqueta script del index.html añadiremos de tipo module <script src="app.js" type="module"></script>
 
 -
