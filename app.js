@@ -91,6 +91,8 @@ onAuthStateChanged(auth, (user) => {
           chat.append(clone);
         }
 
+        chat.scrollTop = chat.scrollHeight;
+
       });
     });
     // ...
