@@ -24,4 +24,8 @@ añadimos: @import "../node_modules/bootstrap/scss/bootstrap";
   ( usando npm o script). Usaremos la etiqueta script en app.js y en la etiqueta script del index.html añadiremos de tipo module <script src="app.js" type="module"></script>
 
 -
-- Configurar Firebase Hosting - Firabase // npm install -g firebase-tools
+- Configurar Firebase Hosting - Firabase
+- npm install -g firebase-tools
+- firebase login
+- firebase init
+  -firebase deploy
